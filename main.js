@@ -10,7 +10,7 @@ const submitBtn = document.getElementById('submitBtn');
 
 const passRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const contactRegex = /^\d{11}$/;
+const contactRegex = /^(?:\d{11})?$/;
 
 const checkTotalValidity = () => {
     const isFnValid = firstName.value.trim() !== "";
@@ -19,7 +19,7 @@ const checkTotalValidity = () => {
     const ageVal = parseInt(age.value);
     const isAgeValid = !isNaN(ageVal) && ageVal >= 18 && ageVal <= 151;
     
-    const isContactValid = contactNumber.value.trim() !== "" && contactRegex.test(contactNumber.value);
+    const isContactValid =  contactRegex.test(contactNumber.value);
     
     const emailValues = emails.value.split(',').map(e => e.trim()).filter(e => e !== "");
     const areEmailsValid = emailValues.length > 0 && emailValues.every(e => emailRegex.test(e));
@@ -41,7 +41,7 @@ const handleVisualFeedback = (e) => {
         const val = parseInt(input.value);
         isValid = !isNaN(val) && val >= 18 && val <= 151;
     } else if (input.id === 'contactNumber') {
-        isValid = input.value.trim() !== "" && contactRegex.test(input.value);
+        isValid =  contactRegex.test(input.value);
     } else if (input.id === 'emails') {
         const list = input.value.split(',').map(e => e.trim()).filter(e => e !== "");
         isValid = list.length > 0 && list.every(e => emailRegex.test(e));
