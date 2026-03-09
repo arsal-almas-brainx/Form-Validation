@@ -8,7 +8,7 @@ const confirmPassword = document.getElementById('confirmPassword');
 const submitBtn = document.getElementById('submitBtn');
 
 
-const passRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+const passRegex = /^(?:(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d\W_]{8,})?$/;
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const contactRegex = /^(?:\d{11})?$/;
 
@@ -25,7 +25,7 @@ const checkTotalValidity = () => {
     const areEmailsValid = emailValues.length > 0 && emailValues.every(e => emailRegex.test(e));
     
     const isPassStrong = passRegex.test(password.value);
-    const isMatch = (password.value === confirmPassword.value) && confirmPassword.value !== "" && isPassStrong;
+    const isMatch = (password.value === confirmPassword.value) && isPassStrong;
 
    
     submitBtn.disabled = !(isFnValid && isLnValid && isAgeValid && areEmailsValid && isPassStrong && isMatch && isContactValid);
