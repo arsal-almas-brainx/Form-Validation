@@ -48,7 +48,7 @@ const handleVisualFeedback = (e) => {
     } else if (input.id === 'password') {
         isValid = passRegex.test(input.value);
     } else if (input.id === 'confirmPassword') {
-        isValid = input.value === password.value && input.value !== "" && passRegex.test(password.value);
+        isValid = input.value === password.value && passRegex.test(password.value);
     }
 
     if (isValid) {
